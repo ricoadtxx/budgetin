@@ -14,53 +14,82 @@ datasource db {
 }
 
 model userSettings {
-  userId    String @id
-  currency  String
+  userId       String         @id                             
+  currency     String                                         
+  savingsGoals SavingsGoal[]  @relation("UserSavingsGoals")   
+  savings      Tabungan[]     @relation("UserSavings")        
 }
+
 
 model Category {
-  createdAt DateTime @default(now())
-  name      String
-  userId    String
-  icon      String
-  type      String   @default("income")
+  createdAt DateTime @default(now())                
+  name      String                                 
+  userId    String                                 
+  icon      String                                 
+  type      String   @default("income")           
 
-  @@unique([name, userId, type])
+  @@unique([name, userId, type])                   
 }
 
-model Transactions{
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-
-  amount      Float
-  description String
-  date        DateTime
-  userId      String
-  type        String    @default("income")
-
-  category     String
-  categoryIcon String
+model Transactions {
+  id             String      @id @default(uuid())             
+  createdAt      DateTime    @default(now())                  
+  updatedAt      DateTime    @default(now())                  
+  amount         Float                                       
+  description    String                                      
+  date           DateTime                                   
+  userId         String                                     
+  type           String        @default("income")           
+  category       String                                      
+  categoryIcon   String                                      
 }
 
 model MonthHistory {
-  userId String
-  day Int
-  month Int
-  year Int
-  income Float
-  expense Float
+  userId  String                                    
+  day     Int                                       
+  month   Int                                       
+  year    Int                                       
+  income  Float                                     
+  expense Float                                     
 
-  @@id([day, month, year, userId])
+  @@id([day, month, year, userId])                  
 }
 
-
 model YearHistory {
-  userId String
-  month Int
-  year Int
-  income Float
-  expense Float
+  userId  String                                    
+  month   Int                                       
+  year    Int                                       
+  income  Float                                     
+  expense Float                                     
 
-  @@id([month, year, userId])
+  @@id([month, year, userId])                       
+}
+
+model Tabungan {
+  id           String        @id @default(uuid())             
+  createdAt    DateTime      @default(now())                  
+  userId       String                                         
+  savingsGoalId String?                                       
+  amount       Float                                         
+  description  String?                                       
+  status       String        @default("pending")             
+
+  user         userSettings  @relation("UserSavings", fields: [userId], references: [userId])
+  savingsGoal  SavingsGoal?  @relation("GoalSavings", fields: [savingsGoalId], references: [id])
+}
+
+model SavingsGoal {
+  id           String        @id @default(uuid())             
+  createdAt    DateTime      @default(now())                  
+  updatedAt    DateTime      @updatedAt                       
+  userId       String                                        
+  goalName     String                                        
+  targetAmount Float                                         
+  savedAmount  Float        @default(0)
+  fromDate     DateTime                     
+  toDate       DateTime                                     
+  status       String        @default("active")             
+  savings      Tabungan[]    @relation("GoalSavings")        
+
+  user         userSettings  @relation("UserSavingsGoals", fields: [userId], references: [userId])
 }
