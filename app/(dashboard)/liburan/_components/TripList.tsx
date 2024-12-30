@@ -22,7 +22,7 @@ import {
 import React, { useMemo, useState } from "react";
 import CreateTripsDialog from "./CreateTripsDialog";
 import DeleteTripsDialog from "./DeleteTripsDialog";
-import EditTripsDialog from "./EditTripsDialog";
+import DetailsTripsDialog from "./DetailsTripsDialog";
 
 function TripList({ userSettings }: { userSettings: userSettings }) {
 	const tripsQuery = useQuery<SavingsGoal[]>({
@@ -63,8 +63,8 @@ function TripList({ userSettings }: { userSettings: userSettings }) {
 		<Card className="w-full">
 			<CardHeader className="flex flex-row items-center justify-between">
 				<div className="flex flex-col gap-1">
-					<CardTitle className="text-rose-400">Your List Trip</CardTitle>
-					<CardDescription className="text-sm text-muted-foreground">
+					<CardTitle className="text-black">Your List Trip</CardTitle>
+					<CardDescription className="text-sm text-gray-600">
 						List of all your trips
 					</CardDescription>
 				</div>
@@ -90,16 +90,14 @@ function TripList({ userSettings }: { userSettings: userSettings }) {
 					placeholder="Search..."
 					value={searchQuery}
 					onChange={(e) => setSearchQuery(e.target.value)}
-					className="p-2 border rounded-md w-full max-w-xs"
+					className="p-2 border rounded-md w-full max-w-xs text-black bg-background"
 				/>
 			</div>
 			<SkeletonWrapper fullWidth isLoading={tripsQuery.isFetching}>
 				{!dataAvailable && (
-					<div className="flex h-40 w-full flex-col items-center justify-center">
+					<div className="flex h-40 w-full flex-col items-center justify-center text-black">
 						<p>You don&apos;t have any trips</p>
-						<p className="text-sm text-muted-foreground">
-							Create your first trip
-						</p>
+						<p className="text-sm text-gray-600">Create your first trip</p>
 					</div>
 				)}
 				{dataAvailable && (
@@ -132,9 +130,9 @@ function TripsCard({
 	formatter: Intl.NumberFormat;
 }) {
 	const statusClasses = {
-		active: "text-yellow-500",
-		completed: "text-green-500",
-		cancelled: "text-red-500",
+		active: "text-black font-bold",
+		completed: "text-green-700 font-bold",
+		cancelled: "text-red-700 font-bold",
 	};
 
 	// Hitung persentase savedAmount terhadap targetAmount
@@ -149,8 +147,8 @@ function TripsCard({
 	return (
 		<Card className="flex flex-col justify-between rounded-md p-4 shadow-md gap-4">
 			<div className="flex flex-col gap-1">
-				<TicketsPlane className="text-muted-foreground" />
-				<h3 className="text-lg font-semibold">{trip.goalName}</h3>
+				<TicketsPlane color="black" />
+				<h3 className="text-lg font-semibold text-black">{trip.goalName}</h3>
 			</div>
 			<div className="text-sm flex justify-start gap-1">
 				<div className="text-rose-500">
@@ -159,7 +157,7 @@ function TripsCard({
 					<p>Deadline</p>
 					<p>Status</p>
 				</div>
-				<div className="text-muted-foreground">
+				<div className="text-gray-600">
 					<p> : {formatter.format(trip.targetAmount)}</p>
 					<p> : {formatter.format(trip.savedAmount)}</p>
 					<p>
@@ -180,7 +178,7 @@ function TripsCard({
 			</div>
 			{/* Progress Bar dengan Nilai Persen */}
 			<div className="flex flex-col gap-1">
-				<div className="flex justify-between text-sm text-muted-foreground">
+				<div className="flex justify-between text-sm text-gray-600">
 					<span>Progress</span>
 					<span>{progressPercentage.toFixed(0)}%</span>{" "}
 					{/* Nilai persentase aktual */}
@@ -193,7 +191,7 @@ function TripsCard({
 				</div>
 			</div>
 			<div className="flex justify-end gap-2">
-				<EditTripsDialog
+				<DetailsTripsDialog
 					trigger={
 						<Button variant={"outline"} className="bg-gray-700">
 							<FilePenLine />

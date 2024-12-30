@@ -85,7 +85,7 @@ export function CurrencyComboBox() {
 		return (
 			<SkeletonWrapper isLoading={userSettings.isFetching}>
 				<Popover open={open} onOpenChange={setOpen}>
-					<PopoverTrigger asChild>
+					<PopoverTrigger className="text-black" asChild>
 						<Button
 							variant="outline"
 							className="w-full justify-start"
@@ -132,11 +132,11 @@ function OptionList({
 	setselectedOption: (status: Currency | null) => void;
 }) {
 	return (
-		<Command>
-			<CommandInput placeholder="Filter currency..." />
+		<Command className="bg-background">
+			<CommandInput className="text-gray-600" placeholder="Filter currency..." />
 			<CommandList>
 				<CommandEmpty>No results found.</CommandEmpty>
-				<CommandGroup>
+				<CommandGroup className="text-black">
 					{Currencies.map((currency: Currency) => (
 						<CommandItem
 							key={currency.value}

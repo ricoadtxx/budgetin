@@ -88,7 +88,7 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
 				month: "2-digit",
 				day: "2-digit",
 			});
-			return <div className="text-muted-foreground">{formattedDate}</div>;
+			return <div className="text-black ">{formattedDate}</div>;
 		},
 	},
 	{
@@ -104,8 +104,8 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
 				className={cn(
 					"capitalize rounded-lg text-center p-2",
 					row.original.type === "income" &&
-						"bg-emerald-400/10 text-emerald-500",
-					row.original.type === "expense" && "bg-red-400/10 text-red-500"
+						"bg-primary text-lime-500 font-bold",
+					row.original.type === "expense" && "bg-primary text-red-500 font-bold"
 				)}
 			>
 				{row.original.type}
@@ -118,7 +118,7 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
 			<DataTableColumnHeader column={column} title="Amount" />
 		),
 		cell: ({ row }) => (
-			<p className="text-md rounded-lg bg-gray-400/5 p-2 text-center font-medium">
+			<p className="text-md rounded-lg bg-primary p-2 text-center font-medium">
 				{row.original.formattedAmount}
 			</p>
 		),
@@ -184,7 +184,7 @@ function TransactionsTable({ from, to }: Props) {
 	return (
 		<div className="w-full">
 			<div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 py-4">
-				<div className="flex gap-2">
+				<div className="flex gap-2 text-black">
 					{table.getColumn("category") && (
 						<DataTableFacetedFilter
 							title="Category"
@@ -203,7 +203,7 @@ function TransactionsTable({ from, to }: Props) {
 						/>
 					)}
 				</div>
-				<div className="flex flex-wrap gap-2">
+				<div className="flex flex-wrap gap-2 text-black">
 					<Button
 						variant={"outline"}
 						size={"sm"}
@@ -228,14 +228,14 @@ function TransactionsTable({ from, to }: Props) {
 				</div>
 			</div>
 			<SkeletonWrapper isLoading={history.isFetching}>
-				<div className="rounded-md border">
+				<div className="rounded-md border text-black">
 					<Table>
 						<TableHeader>
 							{table.getHeaderGroups().map((headerGroup) => (
-								<TableRow key={headerGroup.id}>
+								<TableRow className="text-black" key={headerGroup.id}>
 									{headerGroup.headers.map((header) => {
 										return (
-											<TableHead key={header.id}>
+											<TableHead className="text-center" key={header.id}>
 												{header.isPlaceholder
 													? null
 													: flexRender(
@@ -248,15 +248,16 @@ function TransactionsTable({ from, to }: Props) {
 								</TableRow>
 							))}
 						</TableHeader>
-						<TableBody>
+						<TableBody className="text-black">
 							{table.getRowModel().rows?.length ? (
 								table.getRowModel().rows.map((row) => (
 									<TableRow
 										key={row.id}
 										data-state={row.getIsSelected() && "selected"}
+										className="text-black"
 									>
 										{row.getVisibleCells().map((cell) => (
-											<TableCell key={cell.id}>
+											<TableCell className="text-black" key={cell.id}>
 												{flexRender(
 													cell.column.columnDef.cell,
 													cell.getContext()
@@ -284,6 +285,7 @@ function TransactionsTable({ from, to }: Props) {
 						size="sm"
 						onClick={() => table.previousPage()}
 						disabled={!table.getCanPreviousPage()}
+						className="text-black cursor-pointer"
 					>
 						Previous
 					</Button>
@@ -292,6 +294,7 @@ function TransactionsTable({ from, to }: Props) {
 						size="sm"
 						onClick={() => table.nextPage()}
 						disabled={!table.getCanNextPage()}
+						className="text-black cursor-pointer"
 					>
 						Next
 					</Button>
@@ -319,16 +322,16 @@ function RowActions({ transaction }: { transaction: TransactionHistoryRow }) {
 						<MoreHorizontal className="h-4 w-4" />
 					</Button>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent align="end">
+				<DropdownMenuContent className="bg-background text-black" align="end">
 					<DropdownMenuLabel>Actions</DropdownMenuLabel>
 					<DropdownMenuSeparator />
 					<DropdownMenuItem
-						className="flex items-center gap-2"
+						className="flex items-center gap-2 text-red-500"
 						onSelect={() => {
 							setShowDeleteDialog((prev) => !prev);
 						}}
 					>
-						<TrashIcon className="h-4 w-4 text-muted-foreground" />
+						<TrashIcon className="h-4 w-4 text-red-500 " />
 						Delete
 					</DropdownMenuItem>
 				</DropdownMenuContent>

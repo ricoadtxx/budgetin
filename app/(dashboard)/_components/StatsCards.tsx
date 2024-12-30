@@ -96,14 +96,14 @@ function StatsCard({
 		<Card className="flex h-24 w-full items-center gap-2 p-4">
 			{icon}
 			<div className="flex flex-col items-start gap-0">
-				<p className="text-sm">{title}</p>
+				<p className="text-sm text-black">{title}</p>
 				<CountUp
 					preserveValue
 					redraw={false}
 					end={value}
 					decimals={0}
 					formattingFn={formatFn}
-					className="text-lg"
+					className="text-lg text-black"
 				/>
 			</div>
 		</Card>

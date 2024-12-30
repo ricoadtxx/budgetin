@@ -36,7 +36,7 @@ function Page() {
 
 	if (!userSettings) {
 		return (
-			<div className="p-10 flex justify-center items-center">
+			<div className="p-10 flex justify-center items-center text-black">
 				<p>Failed to load user settings. Please try again later.</p>
 			</div>
 		);
@@ -47,7 +47,7 @@ function Page() {
 			{/* Start Header */}
 			<div className="border-b bg-card">
 				<div className="flex flex-wrap items-center justify-between gap-6 py-8 px-4">
-					<p className="text-2xl font-bold text-center text-rose-500">
+					<p className="text-2xl font-bold text-center text-black">
 						This is all the trip you have created
 					</p>
 					<CreateTabunganDialog

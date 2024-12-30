@@ -27,36 +27,38 @@ export function DataTableColumnHeader<TData, TValue>({
 	}
 
 	return (
-		<div className={cn("flex items-center space-x-2", className)}>
+		<div
+			className={cn("flex items-center justify-center space-x-2", className)}
+		>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<Button
 						variant="ghost"
 						size="sm"
-						className="-ml-3 h-8 data-[state=open]:bg-accent"
+						className="-ml-3 h-8 data-[state=open]:bg-card"
 					>
 						<span>{title}</span>
 						{column.getIsSorted() === "desc" ? (
-							<ArrowDown />
+							<ArrowDown color="black"/>
 						) : column.getIsSorted() === "asc" ? (
 							<ArrowUp />
 						) : (
-							<ChevronsUpDown />
+							<ChevronsUpDown color="black"/>
 						)}
 					</Button>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent align="start">
+				<DropdownMenuContent className="bg-background text-black" align="start">
 					<DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-						<ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70" />
+						<ArrowUp className="h-3.5 w-3.5" />
 						Asc
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-						<ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
+						<ArrowDown className="h-3.5 w-3.5" />
 						Desc
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
 					<DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-						<EyeOff className="h-3.5 w-3.5 text-muted-foreground/70" />
+						<EyeOff className="h-3.5 w-3.5" />
 						Hide
 					</DropdownMenuItem>
 				</DropdownMenuContent>

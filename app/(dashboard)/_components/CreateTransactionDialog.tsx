@@ -113,7 +113,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-black">
 						Create a new
 						<span
 							className={cn(
@@ -127,7 +127,10 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 					</DialogTitle>
 				</DialogHeader>
 				<Form {...form}>
-					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+					<form
+						className="space-y-4 text-black"
+						onSubmit={form.handleSubmit(onSubmit)}
+					>
 						<FormField
 							control={form.control}
 							name="description"
@@ -135,9 +138,9 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
-										<Input defaultValue={""} {...field} />
+										<Input defaultValue={""} placeholder="Description" {...field} />
 									</FormControl>
-									<FormDescription>
+									<FormDescription className="font-bold text-gray-600">
 										Transaction description (optional)
 									</FormDescription>
 								</FormItem>
@@ -153,7 +156,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 									<FormControl>
 										<Input defaultValue={0} type="number" {...field} />
 									</FormControl>
-									<FormDescription>
+									<FormDescription className="font-bold text-gray-600">
 										Transaction amount (required)
 									</FormDescription>
 								</FormItem>
@@ -172,8 +175,8 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 												onChange={handleCategoryChange}
 											/>
 										</FormControl>
-										<FormDescription>
-											Select a category for this transaction
+										<FormDescription className="font-bold text-gray-600 text-sm">
+											Select a category
 										</FormDescription>
 									</FormItem>
 								)}
@@ -216,8 +219,8 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 												/>
 											</PopoverContent>
 										</Popover>
-										<FormDescription>
-											Select a date for this transaction
+										<FormDescription className="font-bold text-gray-600 text-sm">
+											Select a date
 										</FormDescription>
 										<FormMessage />
 									</FormItem>
@@ -228,20 +231,23 @@ function CreateTransactionDialog({ trigger, type }: Props) {
 				</Form>
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button
-							type="button"
-							variant={"secondary"}
+						<button
+							className="text-sm text-neutral-50 border-black shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-red-500"
 							onClick={() => {
 								form.reset();
 							}}
 						>
 							Cancel
-						</Button>
+						</button>
 					</DialogClose>
-					<Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
+					<button
+						className="text-sm text-neutral-50 border-white shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-black"
+						onClick={form.handleSubmit(onSubmit)}
+						disabled={isPending}
+					>
 						{!isPending && "Create"}
 						{isPending && <Loader2 className="animate-spin" />}
-					</Button>
+					</button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

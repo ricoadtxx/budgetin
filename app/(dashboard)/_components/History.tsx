@@ -61,16 +61,16 @@ function History({ userSettings }: { userSettings: userSettings }) {
 						<div className="flex justify-center h-10 gap-2">
 							<Badge
 								variant={"outline"}
-								className="flex items-center gap-2 text-sm"
+								className="flex items-center border-none gap-2 text-sm text-black"
 							>
-								<div className="h-4 w-4 rounded-full bg-emerald-500"></div>
+								<div className="h-4 w-4 rounded-full bg-lime-500"></div>
 								Income
 							</Badge>
 							<Badge
 								variant={"outline"}
-								className="flex items-center gap-2 text-sm"
+								className="flex items-center border-none gap-2 text-sm text-black"
 							>
-								<div className="h-4 w-4 rounded-full bg-red-500"></div>
+								<div className="h-4 w-4 rounded-full bg-red-600"></div>
 								Expense
 							</Badge>
 						</div>
@@ -89,12 +89,12 @@ function History({ userSettings }: { userSettings: userSettings }) {
 										<linearGradient id="incomeBar" x1="0" y1="0" x2="0" y2="1">
 											<stop
 												offset={"0"}
-												stopColor="#10b981"
+												stopColor="#84cc16"
 												stopOpacity={"1"}
 											/>
 											<stop
 												offset={"1"}
-												stopColor="#10b981"
+												stopColor="#84cc16"
 												stopOpacity={"0"}
 											/>
 										</linearGradient>
@@ -102,12 +102,12 @@ function History({ userSettings }: { userSettings: userSettings }) {
 										<linearGradient id="expenseBar" x1="0" y1="0" x2="0" y2="1">
 											<stop
 												offset={"0"}
-												stopColor="#ef4444"
+												stopColor="#dc2626"
 												stopOpacity={"1"}
 											/>
 											<stop
 												offset={"1"}
-												stopColor="#ef4444"
+												stopColor="#dc2626"
 												stopOpacity={"0"}
 											/>
 										</linearGradient>
@@ -115,10 +115,12 @@ function History({ userSettings }: { userSettings: userSettings }) {
 									<CartesianGrid
 										strokeDasharray="5 5"
 										strokeOpacity={"0.2"}
+										stroke="#0a0a0a"
+										horizontal={true}
 										vertical={false}
 									/>
 									<XAxis
-										stroke="#888888"
+										stroke="#0a0a0a"
 										fontSize={12}
 										tickLine={false}
 										axisLine={false}
@@ -137,7 +139,7 @@ function History({ userSettings }: { userSettings: userSettings }) {
 										}}
 									/>
 									<YAxis
-										stroke="#888888"
+										stroke="#0a0a0a"
 										fontSize={12}
 										tickLine={false}
 										axisLine={false}
@@ -189,27 +191,27 @@ function CustomTooltip({ active, payload, formatter }: any) {
 	const { expense, income } = data;
 
 	return (
-		<div className="min-w-[300px] rounded border bg-background p-4">
+		<div className="min-w-[300px] rounded bg-background p-4">
 			<TooltipRow
 				formatter={formatter}
 				label="Expense"
 				value={expense}
-				bgColor="bg-red-500"
-				textColor="text-red-500"
+				bgColor="bg-red-600"
+				textColor="text-red-600"
 			/>
 			<TooltipRow
 				formatter={formatter}
 				label="Income"
 				value={income}
-				bgColor="bg-emerald-500"
-				textColor="text-emerald-500"
+				bgColor="bg-lime-500"
+				textColor="text-lime-500"
 			/>
 			<TooltipRow
 				formatter={formatter}
 				label="Balance"
 				value={income - expense}
-				bgColor="bg-gray-100"
-				textColor="text-foreground"
+				bgColor="bg-gray-500"
+				textColor="text-gray-500"
 			/>
 		</div>
 	);
@@ -238,7 +240,7 @@ function TooltipRow({
 		<div className="flex items-center gap-2">
 			<div className={cn("h-4 w-4 rounded-full", bgColor)} />
 			<div className="flex w-full justify-between">
-				<p className="text-sm text-muted-foreground">{label}</p>
+				<p className="text-sm text-gray-600">{label}</p>
 				<div className={cn("text-sm font-bold", textColor)}>
 					<CountUp
 						duration={0.5}

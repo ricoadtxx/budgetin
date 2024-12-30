@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Budget Tracker With Ayang",
+	title: "Budgeting App For Personal Use",
 	description: "Financial Management App",
 };
 

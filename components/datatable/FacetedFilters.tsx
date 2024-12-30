@@ -81,11 +81,13 @@ export function DataTableFacetedFilter<TData, TValue>({
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0" align="start">
-				<Command>
-					<CommandInput placeholder={title} />
+				<Command className="bg-background">
+					<CommandInput className="text-gray-600" placeholder={title} />
 					<CommandList>
-						<CommandEmpty>No results found.</CommandEmpty>
-						<CommandGroup>
+						<CommandEmpty className="text-black p-6 text-center">
+							No results found.
+						</CommandEmpty>
+						<CommandGroup className="text-black">
 							{options.map((option) => {
 								const isSelected = selectedValues.has(option.value);
 								return (
@@ -105,16 +107,16 @@ export function DataTableFacetedFilter<TData, TValue>({
 									>
 										<div
 											className={cn(
-												"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+												"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-black",
 												isSelected
-													? "bg-primary text-primary-foreground"
+													? "bg-card text-black"
 													: "opacity-50 [&_svg]:invisible"
 											)}
 										>
 											<Check />
 										</div>
 										{option.icon && (
-											<option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+											<option.icon className="mr-2 h-4 w-4" />
 										)}
 										<span>{option.label}</span>
 										{facets?.get(option.value) && (

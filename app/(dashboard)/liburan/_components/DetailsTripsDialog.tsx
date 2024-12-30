@@ -1,7 +1,6 @@
 "use client";
 
 import SkeletonWrapper from "@/components/SkeletonWrapper";
-import { Button } from "@/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -23,7 +22,7 @@ interface Props {
 	id: string;
 }
 
-function EditTripsDialog({ trigger, id }: Props) {
+function DetailsTripsDialog({ trigger, id }: Props) {
 	const [open, setOpen] = useState(false);
 
 	const [goalName, setGoalName] = useState<string | undefined>(undefined);
@@ -81,24 +80,24 @@ function EditTripsDialog({ trigger, id }: Props) {
 		status?: string;
 	}) => {
 		return (
-			<div className="space-y-4">
+			<div className="space-y-4 text-black">
 				<div>
 					<label className="block text-sm font-medium text-gray-700">
 						Goal Name
 					</label>
-					<Input type="text" value={goalName} readOnly />
+					<Input type="text" value={goalName} disabled />
 				</div>
 				<div>
 					<label className="block text-sm font-medium text-gray-700">
 						Target
 					</label>
-					<Input type="number" value={targetAmount} readOnly />
+					<Input type="number" value={targetAmount} disabled />
 				</div>
 				<div>
 					<label className="block text-sm font-medium text-gray-700">
 						Saved
 					</label>
-					<Input type="number" value={savedAmount} readOnly />
+					<Input type="number" value={savedAmount} disabled />
 				</div>
 				<div>
 					<label className="block text-sm font-medium text-gray-700">
@@ -107,7 +106,7 @@ function EditTripsDialog({ trigger, id }: Props) {
 					<select
 						value={status}
 						onChange={(e) => setStatus(e.target.value)}
-						className="w-full p-2 rounded-md"
+						className="w-full p-2 rounded-md bg-card border"
 					>
 						<option value="active">Active</option>
 						<option value="completed">Completed</option>
@@ -123,8 +122,8 @@ function EditTripsDialog({ trigger, id }: Props) {
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>
-						Edit your <span className="m-1 text-rose-300">goal</span>✈️
+					<DialogTitle className="text-black">
+						Edit your<span className="m-1 text-gray-600">goal</span>✈️
 					</DialogTitle>
 				</DialogHeader>
 				<SkeletonWrapper isLoading={isLoading}>
@@ -139,10 +138,13 @@ function EditTripsDialog({ trigger, id }: Props) {
 				</SkeletonWrapper>
 
 				<DialogFooter className="flex flex-col gap-1 sm:gap-0">
-					<Button variant={"outline"} className="bg-red-500">
-						Cancel
-					</Button>
-					<Button
+					<button
+						className="text-sm text-neutral-50 border-black shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-red-500"
+						onClick={() => setOpen(false)}
+					>
+						Close
+					</button>
+					<button
 						onClick={() => {
 							toast.loading("Saving ...", {
 								id: "update-trip",
@@ -155,15 +157,14 @@ function EditTripsDialog({ trigger, id }: Props) {
 								status: status as "active" | "completed" | "cancelled",
 							});
 						}}
-						variant={"ghost"}
-						className="bg-gray-700"
+						className="text-sm text-neutral-50 border-white shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-black"
 					>
 						Save
-					</Button>
+					</button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);
 }
 
-export default EditTripsDialog;
+export default DetailsTripsDialog;

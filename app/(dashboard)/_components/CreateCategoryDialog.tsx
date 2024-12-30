@@ -98,7 +98,7 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>
+			<DialogTrigger className="text-black" asChild>
 				{trigger ? (
 					trigger
 				) : (
@@ -113,23 +113,26 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>
-						Create{" "}
+					<DialogTitle className="text-black">
+						Create
 						<span
 							className={cn(
 								"m-1",
-								type === "income" ? "text-emerald-500" : "text-red-500"
+								type === "income" ? "text-lime-500" : "text-red-500"
 							)}
 						>
 							{type}
 						</span>
 					</DialogTitle>
-					<DialogDescription>
-						Categpries are used to group the transactions you make.
+					<DialogDescription className="text-gray-600">
+						Categories are used to group the transactions you make.
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className="space-y-8 text-black"
+					>
 						<FormField
 							control={form.control}
 							name="name"
@@ -137,9 +140,15 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
 								<FormItem>
 									<FormLabel>Name</FormLabel>
 									<FormControl>
-										<Input placeholder="Category" {...field} />
+										<Input
+											className="text-gray-600 placeholder:text-gray-600"
+											placeholder="Category"
+											{...field}
+										/>
 									</FormControl>
-									<FormDescription>Create a category</FormDescription>
+									<FormDescription className="text-gray-600">
+										Create a category
+									</FormDescription>
 								</FormItem>
 							)}
 						/>
@@ -162,14 +171,14 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
 															<span className="text-5xl" role="img">
 																{field.value}
 															</span>
-															<p className="text-xs text-muted-foreground">
+															<p className="text-xs text-gray-600">
 																Click to change
 															</p>
 														</div>
 													) : (
 														<div className="flex flex-col items-center gap-2">
 															<CircleOff className="h-[48px] w-[48px]" />
-															<p className="text-xs text-muted-foreground">
+															<p className="text-xs text-gray-600">
 																Click to select
 															</p>
 														</div>
@@ -187,7 +196,7 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
 											</PopoverContent>
 										</Popover>
 									</FormControl>
-									<FormDescription>
+									<FormDescription className="text-gray-600">
 										This is how your category will be represented
 									</FormDescription>
 								</FormItem>
@@ -197,20 +206,23 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
 				</Form>
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button
-							type="button"
-							variant={"secondary"}
+						<button
+							className="text-sm text-neutral-50 border-black shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-red-500"
 							onClick={() => {
 								form.reset();
 							}}
 						>
 							Cancel
-						</Button>
+						</button>
 					</DialogClose>
-					<Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
+					<button
+						className="text-sm text-neutral-50 border-white shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-black"
+						onClick={form.handleSubmit(onSubmit)}
+						disabled={isPending}
+					>
 						{!isPending && "Create"}
 						{isPending && <Loader2 className="animate-spin" />}
-					</Button>
+					</button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

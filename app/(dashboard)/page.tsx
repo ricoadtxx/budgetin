@@ -23,11 +23,11 @@ async function page() {
 		redirect("/wizard");
 	}
 	return (
-		<div className="h-full bg-background">
-			<div className="border-b bg-card">
+		<div className="h-full text-black">
+			<div className="border-b border-rose-600 bg-card">
 				<div className="flex flex-wrap items-center justify-center md:justify-between gap-6 py-8 px-4">
-					<p className="text-2xl font-bold">
-						Hallo sayangku 😍{user.firstName}😍
+					<p className="text-2xl font-bold font-sans text-black">
+						Hallo {user.firstName}, Selamat Datang
 					</p>
 
 					<div className="flex items-center gap-3">
@@ -35,7 +35,7 @@ async function page() {
 							trigger={
 								<Button
 									variant={"outline"}
-									className="border-emerald-500 bg-emerald-950 text-white hover:bg-emerald-700 hover:text-white"
+									className="border-rose-900 bg-background text-black hover:text-white"
 								>
 									New income 💸
 								</Button>
@@ -47,7 +47,7 @@ async function page() {
 							trigger={
 								<Button
 									variant={"outline"}
-									className="border-rose-500 bg-rose-950 text-white hover:bg-rose-700 hover:text-white"
+									className="border-rose-900 bg-background text-black hover:text-white"
 								>
 									New expense 💰
 								</Button>

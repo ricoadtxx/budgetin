@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
 	Dialog,
 	DialogClose,
@@ -135,12 +134,15 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>
-						Create a new <span className="m-1 text-rose-300">Tabungan</span>💰
+					<DialogTitle className="text-black">
+						Create a new<span className="m-1 text-gray-600">Tabungan</span>💰
 					</DialogTitle>
 				</DialogHeader>
 				<Form {...form}>
-					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+					<form
+						className="space-y-4 text-black"
+						onSubmit={form.handleSubmit(onSubmit)}
+					>
 						<FormField
 							control={form.control}
 							name="savingsGoalId"
@@ -150,7 +152,7 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 									<FormControl>
 										<select
 											{...field}
-											className="w-full p-2 border rounded-md"
+											className="w-full p-2 border rounded-md bg-background"
 											disabled={isSavingGoalsLoading}
 											onChange={(e) => {
 												field.onChange(e);
@@ -165,7 +167,9 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 											))}
 										</select>
 									</FormControl>
-									<FormDescription>Select your trip.</FormDescription>
+									<FormDescription className="text-gray-600">
+										Select your trip.
+									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -179,7 +183,7 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 									<FormControl>
 										<select
 											{...field}
-											className="w-full p-2 border rounded-md"
+											className="w-full p-2 border rounded-md bg-background"
 											disabled={isIncomeTransactionsLoading}
 										>
 											<option value="">Select an income transaction</option>
@@ -190,7 +194,7 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 											))}
 										</select>
 									</FormControl>
-									<FormDescription>
+									<FormDescription className="text-gray-600">
 										This will take the balance from your income
 									</FormDescription>
 									<FormMessage />
@@ -213,7 +217,9 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 											}
 										/>
 									</FormControl>
-									<FormDescription>The amount of money saved.</FormDescription>
+									<FormDescription className="text-gray-600">
+										The amount of money saved.
+									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -225,9 +231,13 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter Description" {...field} />
+										<Input
+											className="placeholder:text-gray-600"
+											placeholder="Enter Description"
+											{...field}
+										/>
 									</FormControl>
-									<FormDescription>
+									<FormDescription className="text-gray-600">
 										A brief description of this tabungan.
 									</FormDescription>
 									<FormMessage />
@@ -243,32 +253,39 @@ function CreateTabunganDialog({ trigger, successCallback }: Props) {
 									<FormControl>
 										<select
 											{...field}
-											className="w-full p-2 border rounded-md"
+											className="w-full p-2 border rounded-md text-black bg-background opacity-70"
 											disabled
 										>
 											<option value={field.value}>{field.value}</option>
 										</select>
 									</FormControl>
+									<FormDescription className="text-gray-600">
+										You can not change this
+									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
 						<DialogFooter>
 							<DialogClose asChild>
-								<Button
+								<button
 									type="button"
-									variant={"secondary"}
+									className="text-sm text-neutral-50 border-black shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-red-500"
 									onClick={() => {
 										form.reset();
 									}}
 								>
 									Cancel
-								</Button>
+								</button>
 							</DialogClose>
-							<Button type="submit" disabled={isPending}>
+							<button
+								className="text-sm text-neutral-50 border-white shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-black"
+								type="submit"
+								disabled={isPending}
+							>
 								{!isPending && "Create"}
 								{isPending && <Loader2 className="animate-spin" />}
-							</Button>
+							</button>
 						</DialogFooter>
 					</form>
 				</Form>

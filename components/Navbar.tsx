@@ -7,7 +7,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "./ui/button";
 import { UserButton } from "@clerk/nextjs";
-import { ThemeSwitcherBtn } from "./ThemeSwitcherBtn";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 
@@ -31,7 +30,7 @@ function MobileNavbar() {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div className="block border-separate bg-background md:hidden">
+		<div className="text-black block border-separate bg-background md:hidden">
 			<nav className="flex items-center justify-between px-8">
 				<Sheet open={isOpen} onOpenChange={setIsOpen}>
 					<SheetTrigger asChild>
@@ -41,7 +40,7 @@ function MobileNavbar() {
 					</SheetTrigger>
 					<SheetContent side="left" className="w-[400px] sm:w-[540px]">
 						<Logo />
-						<div className="flex flex-col gap-1 pt-4">
+						<div className="flex flex-col gap-1 pt-4 text-black">
 							{items.map((item) => (
 								<NavbarItem
 									key={item.label}
@@ -57,7 +56,6 @@ function MobileNavbar() {
 					<LogoMobile />
 				</div>
 				<div className="flex items-center gap-2">
-					<ThemeSwitcherBtn />
 					<UserButton />
 				</div>
 			</nav>
@@ -67,7 +65,7 @@ function MobileNavbar() {
 
 function DesktopNavbar() {
 	return (
-		<div className="hidden border-separate border-b bg-background md:block">
+		<div className="hidden border-separate border-b border-rose-600 bg-background md:block w-full">
 			<nav className="flex items-center justify-between px-8">
 				<div className="flex h-[80px] min-h-[60px] items-center gap-x-4">
 					<Logo />
@@ -82,7 +80,6 @@ function DesktopNavbar() {
 					</div>
 				</div>
 				<div className="flex items-center gap-2">
-					<ThemeSwitcherBtn />
 					<UserButton />
 				</div>
 			</nav>
@@ -108,8 +105,8 @@ function NavbarItem({
 				href={link}
 				className={cn(
 					buttonVariants({ variant: "ghost" }),
-					"w-full justify-start text-lg text-muted-foreground hover:text-foreground",
-					isActive && "text-foreground"
+					"w-full justify-start text-lg text-black hover:text-foreground",
+					isActive && "text-black"
 				)}
 				onClick={() => {
 					if (clickCallback) clickCallback();
@@ -118,7 +115,7 @@ function NavbarItem({
 				{label}
 			</Link>
 			{isActive && (
-				<div className="absolute -bottom-[2px] left-1/2 hidden h-[2px] w-[80%] -translate-x-1/2 rounded-xl bg-foreground md:block" />
+				<div className="absolute -bottom-[1px] left-1/2 hidden h-[1px] w-[80%] -translate-x-1/2 bg-white md:block" />
 			)}
 		</div>
 	);

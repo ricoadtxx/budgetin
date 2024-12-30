@@ -15,9 +15,11 @@ function TransactionsPage() {
 	return (
 		<>
 			<div className="border-b bg-card">
-				<div className="flex flex-wrap items-center justify-center sm:justify-between gap-6 py-8 px-4">
+				<div className="flex flex-wrap items-center justify-center sm:justify-between gap-6 py-8 px-4 text-black">
 					<div>
-						<p className="text-3xl font-bold text-center">Transactions history</p>
+						<p className="text-3xl font-bold text-center">
+							Transactions history
+						</p>
 					</div>
 					<DateRangePicker
 						initialDateFrom={dateRange.from}

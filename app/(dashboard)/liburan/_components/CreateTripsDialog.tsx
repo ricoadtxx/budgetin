@@ -101,12 +101,12 @@ function CreateTripsDialog({ trigger, successCallback }: Props) {
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>
-						Create a new <span className="m-1 text-rose-300">vacation</span>✈️
+					<DialogTitle className="text-black">
+						Create a new<span className="m-1 text-gray-700">vacation</span>✈️
 					</DialogTitle>
 				</DialogHeader>
 				<Form {...form}>
-					<form className="space-y-4">
+					<form className="space-y-4 text-black">
 						<FormField
 							control={form.control}
 							name="goalName"
@@ -132,7 +132,9 @@ function CreateTripsDialog({ trigger, successCallback }: Props) {
 									<FormControl>
 										<Input defaultValue={0} type="number" {...field} />
 									</FormControl>
-									<FormDescription>Budget (required)</FormDescription>
+									<FormDescription className="text-gray-600">
+										Budget (required)
+									</FormDescription>
 								</FormItem>
 							)}
 						/>
@@ -174,7 +176,7 @@ function CreateTripsDialog({ trigger, successCallback }: Props) {
 												/>
 											</PopoverContent>
 										</Popover>
-										<FormDescription>
+										<FormDescription className="text-gray-600">
 											Select a date for this vacation
 										</FormDescription>
 										<FormMessage />
@@ -218,7 +220,7 @@ function CreateTripsDialog({ trigger, successCallback }: Props) {
 												/>
 											</PopoverContent>
 										</Popover>
-										<FormDescription>
+										<FormDescription className="text-gray-600">
 											Select a date for this vacation
 										</FormDescription>
 										<FormMessage />
@@ -230,20 +232,24 @@ function CreateTripsDialog({ trigger, successCallback }: Props) {
 				</Form>
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button
+						<button
 							type="button"
-							variant={"secondary"}
+							className="text-sm text-neutral-50 border-black shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-red-500"
 							onClick={() => {
 								form.reset();
 							}}
 						>
 							Cancel
-						</Button>
+						</button>
 					</DialogClose>
-					<Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
+					<button
+						className="text-sm text-neutral-50 border-white shadow-[3px_3px_#fafafa] cursor-pointer mx-0 px-5 py-2.5 rounded-[5px] border border-solid active:shadow-none active:translate-x-[3px] active:translate-y-[3px] bg-black"
+						onClick={form.handleSubmit(onSubmit)}
+						disabled={isPending}
+					>
 						{!isPending && "Create"}
 						{isPending && <Loader2 className="animate-spin" />}
-					</Button>
+					</button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

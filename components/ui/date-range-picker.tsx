@@ -307,8 +307,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
 		isSelected: boolean;
 	}): JSX.Element => (
 		<Button
-			className={cn(isSelected && "pointer-events-none")}
-			variant="ghost"
+			className={cn("bg-background",isSelected && "pointer-events-none")}
 			onClick={() => {
 				setPreset(preset);
 			}}
@@ -377,7 +376,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
 					</div>
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent align={align} className="w-auto">
+			<PopoverContent align={align} className="w-auto bg-background text-black">
 				<div className="flex py-2">
 					<div className="flex">
 						<div className="flex flex-col">
@@ -553,11 +552,13 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
 							setIsOpen(false);
 							resetValues();
 						}}
-						variant="ghost"
+						variant="outline"
+						className="bg-rose-600"
 					>
 						Cancel
 					</Button>
 					<Button
+						className="bg-primary text-primary-foreground hover:bg-black hover:text-white"
 						onClick={() => {
 							setIsOpen(false);
 							if (

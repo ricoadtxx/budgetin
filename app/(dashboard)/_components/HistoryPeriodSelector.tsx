@@ -33,13 +33,13 @@ function HistoryPeriodSelector({
 	});
 
 	return (
-		<div className="flex flex-wrap items-center justify-center md:justify-between gap-4">
+		<div className="text-black flex flex-wrap items-center justify-center md:justify-between gap-4">
 			<SkeletonWrapper isLoading={historyPeriods.isFetching} fullWidth={false}>
 				<Tabs
 					value={timeframe}
 					onValueChange={(value) => setTimeFrame(value as Timeframe)}
 				>
-					<TabsList>
+					<TabsList className="bg-background text-black border">
 						<TabsTrigger value="year">Year</TabsTrigger>
 						<TabsTrigger value="month">Month</TabsTrigger>
 					</TabsList>
