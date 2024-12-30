@@ -48,8 +48,10 @@ function DeleteCategoryDialog({ category, trigger }: Props) {
 			<AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
 			<AlertDialogContent>
 				<AlertDialogHeader>
-					<AlertDialogTitle>Are you sure?</AlertDialogTitle>
-					<AlertDialogDescription>
+					<AlertDialogTitle className="text-black">
+						Are you sure?
+					</AlertDialogTitle>
+					<AlertDialogDescription className="text-gray-600">
 						This action cannot be undone
 					</AlertDialogDescription>
 				</AlertDialogHeader>
