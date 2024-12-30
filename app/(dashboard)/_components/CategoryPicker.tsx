@@ -76,12 +76,16 @@ function CategoryPicker({ type, onChange }: Props) {
 					onSubmit={(e) => {
 						e.preventDefault();
 					}}
+					className="bg-background"
 				>
-					<CommandInput placeholder="Search category..." />
+					<CommandInput
+						className="placeholder:text-gray-600"
+						placeholder="Search category..."
+					/>
 					<CreateCategoryDialog type={type} successCallback={successCallback} />
-					<CommandEmpty>
+					<CommandEmpty className="text-black">
 						<p>Category not found</p>
-						<p className="text-xs text-muted-foreground">
+						<p className="text-xs text-gray-600">
 							Tip: You can create a new category
 						</p>
 					</CommandEmpty>
@@ -117,7 +121,7 @@ export default CategoryPicker;
 
 function CategoryRow({ category }: { category: Category }) {
 	return (
-		<div className="flex items-center gap-2">
+		<div className="flex items-center gap-2 text-black">
 			<span role="img">{category.icon}</span>
 			<span>{category.name}</span>
 		</div>
