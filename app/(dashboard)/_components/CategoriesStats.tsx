@@ -77,7 +77,7 @@ function CategoriesCard({
 			</CardHeader>
 			<div className="flex items-center justify-between gap-2">
 				{filteredData.length === 0 && (
-					<div className="flex h-60 w-full flex-col items-center justify-center">
+					<div className="flex h-60 w-full flex-col items-center justify-center text-black">
 						No data for the selected date range
 						<p className="text-sm text-gray-600">
 							Please select a different date range or add new{" "}

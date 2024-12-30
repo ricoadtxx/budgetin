@@ -168,9 +168,9 @@ function History({ userSettings }: { userSettings: userSettings }) {
 							</ResponsiveContainer>
 						)}
 						{!dataAvailable && (
-							<Card className="flex h-[300px] flex-col items-center justify-center bg-background">
+							<Card className="flex h-[300px] flex-col items-center justify-center bg-background text-black">
 								No data for selected period
-								<p className="text-sm text-muted-foreground">
+								<p className="text-sm text-gray-600">
 									Try selecting a different period or adding new transactions
 								</p>
 							</Card>

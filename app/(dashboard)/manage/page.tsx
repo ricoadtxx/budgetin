@@ -102,7 +102,7 @@ function CategoryList({ type }: { type: TransactionType }) {
 				<Separator />
 				{!dataAvailable && (
 					<div className="flex h-40 w-full flex-col items-center justify-center">
-						<p>
+						<p className="text-black">
 							No
 							<span
 								className={cn(
