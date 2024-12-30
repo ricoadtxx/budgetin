@@ -83,8 +83,8 @@ function CategoryPicker({ type, onChange }: Props) {
 						placeholder="Search category..."
 					/>
 					<CreateCategoryDialog type={type} successCallback={successCallback} />
-					<CommandEmpty className="text-black">
-						<p>Category not found</p>
+					<CommandEmpty>
+						<p className="text-base text-center text-black">Category not found</p>
 						<p className="text-xs text-gray-600">
 							Tip: You can create a new category
 						</p>
