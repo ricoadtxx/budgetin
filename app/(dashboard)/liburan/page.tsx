@@ -46,8 +46,8 @@ function Page() {
 		<>
 			{/* Start Header */}
 			<div className="border-b bg-card">
-				<div className="flex flex-wrap items-center justify-between gap-6 py-8 px-4">
-					<p className="text-2xl font-bold text-center text-black">
+				<div className="flex flex-wrap items-center justify-center md:justify-between gap-6 py-8 px-4">
+					<p className="text-2xl  font-bold text-center text-black">
 						This is all the trip you have created
 					</p>
 					<CreateTabunganDialog
